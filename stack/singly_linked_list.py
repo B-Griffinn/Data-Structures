@@ -27,6 +27,7 @@ class LinkedList:
     def __init__(self):
         # first node in the list
         self.head = None
+        self.tail = None
 
 ###### ADD TO TAIL ######
     # add to the end of our list
@@ -54,34 +55,20 @@ class LinkedList:
 
 ###### ADD TO HEAD ######
     def add_to_head(self, value):
-        # regardless if the list is empty or not, we need to wrap the value in a node
         new_node = Node(value)
-        # what if list is empty?
-        if not self.head:
+
+        if not self.head and not self.tail:
             self.head = new_node
-        # what if list is NOT empty?
+            self.tail = new_node
         else:
-            current = self.head
-            while current.get_next() is not None:
-                current = current.get_next()
-            current.set_next(new_node)
-            '''
-            # what node do we want to add the new node to?
-            # the first node in the list
-            # we can get the head from self.head
-            # change current head pointer to be next
-            current = self.head
-            current.set_next(None)  # TODO replace with heads next if there
+            new_node.set_next(self.head)
             self.head = new_node
-            '''
-
-
 ###### END ADD TO HEAD ######
 
-#############################
+            #############################
 
-###### REMOVE FROM HEAD ######
-    # remove node from the head of list
+            ###### REMOVE FROM HEAD ######
+            # remove node from the head of list
     def remove_head(self):
         # what if the list is empty?
         if not self.head:
@@ -108,13 +95,12 @@ class LinkedList:
         # what if the list is NOT empty?
         else:
             # create temp variable for our head
-            current = self.head
-            prev = current
-            while current.get_next() is not None:
-                prev = current
-                current = current.get_next()
-
-            prev.set_next(None)
-
-            return current.value
+            temp = self.head
+            # loop through entire list until we reach the end (None)
+            while temp is not None:
+                # create new variable for our previous node
+                prev = temp
+                temp = temp.get_next()
+            # once we have reached the end of the list update prev.next to be none, which should remove our original last node.
+            prev.next = None
 ###### END REMOVE FROM TAIL ######

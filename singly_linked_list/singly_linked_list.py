@@ -27,9 +27,11 @@ class LinkedList:
     def __init__(self):
         # first node in the list
         self.head = None
+        # self.tail = tail
 
 ###### ADD TO TAIL ######
     # add to the end of our list
+    # add to tail/end of a linked list is O(n)
     def add_to_tail(self, value):
         # regardless if the list is empty or not, we need to wrap the value in a node
         new_node = Node(value)
@@ -92,7 +94,7 @@ class LinkedList:
 
 ###### REMOVE FROM TAIL ########
     # remove node from the tail of list
-    def remove_tail(self, value):
+    def remove_tail(self):
         # node_to_remove = Node(value)
         # what if the list is empty?
         if not self.head:
@@ -109,3 +111,26 @@ class LinkedList:
             # once we have reached the end of the list update prev.next to be none, which should remove our original last node.
             prev.next = None
 ###### END REMOVE FROM TAIL ######
+
+###### REVERSE A SLL ######
+
+    # def reverse(self):
+    #     # start at the head and assign to a node var
+    #     node = self.head
+    #     # swap the head and the tail
+    #     self.head = self.tail
+    #     self.tail = node    # we must use node bc it is a place holder for our original head
+    #     # initialize next var to be None
+    #     next = None
+    #     # initialize prev var to be None
+    #     prev = None  # ensaures end of our list is None
+    #     # loop through list
+    #     while node is not None:
+    #         # save what we are currently looking at the be next
+    #         next = node.next
+    #         # take previous value and set it to be our node.next
+    #         node.next = prev  # first time == null
+    #         # now shift things over
+    #         prev = node
+    #         node = next
+    #     return 'list'
