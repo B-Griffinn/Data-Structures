@@ -18,10 +18,6 @@ class Node:
         # set this nodes next_node reference to the passed in node
         self.next_node = new_next
 
-# ll = Node(1)
-# ll.next_node = Node(2)
-# ll.next_node.new_node = Node(3)
-
 ########### END OF NODE CLASS ###########
 #############################
 ########### BEGIN LINKED LIST ###########
@@ -112,6 +108,4 @@ class LinkedList:
                 temp = temp.get_next()
             # once we have reached the end of the list update prev.next to be none, which should remove our original last node.
             prev.next = None
-
-
 ###### END REMOVE FROM TAIL ######

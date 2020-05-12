@@ -28,13 +28,8 @@ class Stack:
         # self.storage.append(value)
         self.size += 1
 
-    def pop(self, value):
+    def pop(self):
         if self.size > 0:
-            popped_item = self.storage.remove_tail(value)
+            popped_item = self.storage.remove_tail()
             self.size -= 1
             return popped_item
-
-
-# nc = Stack()
-
-# print(nc.__len__())
