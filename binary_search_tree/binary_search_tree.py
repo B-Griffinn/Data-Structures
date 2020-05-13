@@ -90,16 +90,21 @@ class BinarySearchTree:
     # Return the maximum value found in the tree
     def get_max(self):
         # follow the right until the end
-        # if there is a node to the right: get max on right
-
-        # else:
-        # return node.value bc we have already found max
-
-        pass
+        # if we have a right node then return it recursively
+        if self.right:
+            return self.right.get_max()
+        else:
+            return self.value
 
     # Call the function `fn` on the value of each node
     def for_each(self, fn):
-        pass
+        # call the fn function on each node
+        fn(self.value)
+
+        if self.left:
+            self.left.for_each(fn)
+        if self.right:
+            self.right.for_each(fn)
 
     # Part 2 -----------------------
 
