@@ -5,27 +5,96 @@ at searching for a particular piece of data in the tree.
 
 This part of the project comprises two days:
 1. Implement the methods `insert`, `contains`, `get_max`, and `for_each`
-   on the BSTNode class.
+   on the BinarySearchTree class.
 2. Implement the `in_order_print`, `bft_print`, and `dft_print` methods
-   on the BSTNode class.
+   on the BinarySearchTree class.
 """
-class BSTNode:
+
+# each node in a BST is a BST !!!
+
+
+class BinarySearchTree:
     def __init__(self, value):
+        # ROOT VALUE #
         self.value = value
         self.left = None
         self.right = None
 
     # Insert the given value into the tree
     def insert(self, value):
-        pass
+        # PLAN #
+        # check if empty
+        # if empty put node here/at root
+        ## ** We cant do the above because our BTSNode is initialized with a value ** ##
+        # if new < node.value
+        # leftnode.insert value
+        # if left does not exist
+        # create left
+        #   else:
+        # leftnode.insert value
+        # if >=
+        # if right does not exist
+        # create right
+        # else:
+        # rigtnode.insertvalue
+        # rightnode.insert value
+
+        if value < self.value:              # if our incoming value < the root value
+            if self.left is None:           # and if self.left is None
+                # then our left value is a new node/BST with the value passed in
+                self.left = BinarySearchTree(value)
+            else:
+                # otherwise we call on our left node and recurse until left is none so we can insert the new node value
+                self.left.insert(value)
+
+        else:   # if root value is >= the incoming value
+            if self.right is None:
+                # create a right node/BST
+                self.right = BinarySearchTree(value)
+            else:
+                # otherwise we will recurse right until we can insert a value to the right
+                self.right.insert(value)
+
+##############            ##############
+############## END INSERT ##############
+##############            ##############
 
     # Return True if the tree contains the value
     # False if it does not
+
     def contains(self, target):
+        if self.value == target:
+            return True
+        if target < self.value:
+            if self.left is None:
+                return False
+            else:
+                # we must return our function call in order to get an output
+                return self.left.contains(target)
+        else:
+            if self.right is None:
+                return False
+            else:
+                return self.right.contains(target)
+
+        # if node is none return False BASE CASE
+        # if node.value == findvalue: return True
+        # else:
+        # if find < node.value:
+        # if node.left then find on left node:
+        # else:
+        # if node.right: find on right node
+
         pass
 
     # Return the maximum value found in the tree
     def get_max(self):
+        # follow the right until the end
+        # if there is a node to the right: get max on right
+
+        # else:
+        # return node.value bc we have already found max
+
         pass
 
     # Call the function `fn` on the value of each node
