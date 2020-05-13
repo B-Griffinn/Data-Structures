@@ -180,8 +180,12 @@ class DoublyLinkedList:
         max_val = current.value
         # loop thru list until we reach end of list
         while current is not None:
+            # compare current's value to the max_value
             if current.value > max_val:
                 # update max_val to be the current value
                 max_val = current.value
+
+            # update current to be currents next each loop so not only does current stay ahead by 1 but so we can find the end of the list and stop
             current = current.next
+
         return max_val
