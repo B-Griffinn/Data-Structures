@@ -77,7 +77,11 @@ class DoublyLinkedList:
     Returns the value of the removed Node."""
 
     def remove_from_head(self):
-        pass
+        # save the heads value so we do not lose it in reassignment
+        value = self.head.value
+        # call the delete method on the head and let it handle all the pointers
+        self.delete(self.head)
+        return value
 
     """Wraps the given value in a ListNode and inserts it 
     as the new tail of the list. Don't forget to handle 
@@ -106,7 +110,9 @@ class DoublyLinkedList:
     Returns the value of the removed Node."""
 
     def remove_from_tail(self):
-        pass
+        value = self.tail.value
+        self.delete(self.tail)
+        return value
 
     """Removes the input node from its current spot in the 
     List and inserts it as the new head node of the List."""
@@ -124,7 +130,26 @@ class DoublyLinkedList:
     the node was the head or the tail"""
 
     def delete(self, node):
-        pass
+        self.length -= 1
+        # TODO - do we need error checking if node is not in list?
+        # if node to delete is the only node...
+        if self.head is self.tail:
+            self.head = None
+            self.tail = None
+        # what if we want to delete the head?
+        elif node is self.head:
+            # reassing the head to the nodes next
+            self.head = node.next
+            node.delete()  # delete the node
+        # what if we want to delete the tail?
+        elif node is self.tail:
+            # reassing the tail to the nodes prev
+            self.tail = node.prev
+            node.delete()
+        # what if we want to delete a node between 2 nodes?
+        else:
+            # just delete it bc we know where it is if we get here
+            node.delete()
 
     """Returns the highest value currently in the list"""
 
