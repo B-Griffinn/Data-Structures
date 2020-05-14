@@ -38,7 +38,7 @@ class BinarySearchTree:
         # else:
         # rigtnode.insertvalue
         # rightnode.insert value
-
+        # look left!!!
         if value < self.value:              # if our incoming value < the root value
             if self.left is None:           # and if self.left is None
                 # then our left value is a new node/BST with the value passed in
@@ -46,7 +46,7 @@ class BinarySearchTree:
             else:
                 # otherwise we call on our left node and recurse until left is none so we can insert the new node value
                 self.left.insert(value)
-
+        # look right!!
         else:   # if root value is >= the incoming value
             if self.right is None:
                 # create a right node/BST
@@ -63,6 +63,14 @@ class BinarySearchTree:
     # False if it does not
 
     def contains(self, target):
+        # PLAN #
+        # if node is none return False BASE CASE
+        # if node.value == findvalue: return True
+        # else:
+        # if find < node.value:
+        # if node.left then find on left node:
+        # else:
+        # if node.right: find on right node
         if self.value == target:
             return True
         if target < self.value:
@@ -77,17 +85,8 @@ class BinarySearchTree:
             else:
                 return self.right.contains(target)
 
-        # if node is none return False BASE CASE
-        # if node.value == findvalue: return True
-        # else:
-        # if find < node.value:
-        # if node.left then find on left node:
-        # else:
-        # if node.right: find on right node
-
-        pass
-
     # Return the maximum value found in the tree
+
     def get_max(self):
         # follow the right until the end
         # if we have a right node then return it recursively
@@ -100,7 +99,6 @@ class BinarySearchTree:
     def for_each(self, fn):
         # call the fn function on each node
         fn(self.value)
-
         if self.left:
             self.left.for_each(fn)
         if self.right:
@@ -111,10 +109,19 @@ class BinarySearchTree:
     # Print all the values in order from low to high
     # Hint:  Use a recursive, depth first traversal
     def in_order_print(self, node):
-        pass
+        # PLAN #
+        # traverse the BST on the left side while there is a left and print the root value
+        if self.left is not None:
+            self.left.in_order_print(node)
+        print(self.value)
+        # traverse the BST on the right side while there is a right and print the root value
+        if self.right is not None:
+            self.right.in_order_print(node)
+        # print(self.value)
 
     # Print the value of every node, starting with the given node,
     # in an iterative breadth first traversal
+
     def bft_print(self, node):
         pass
 
