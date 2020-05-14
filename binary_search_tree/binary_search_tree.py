@@ -10,6 +10,9 @@ This part of the project comprises two days:
    on the BinarySearchTree class.
 """
 
+from queue import Queue
+from stack import Stack
+
 # each node in a BST is a BST !!!
 
 
@@ -95,7 +98,20 @@ class BinarySearchTree:
         else:
             return self.value
 
+    def iterative_get_max(self):
+        # have the current max = the root value to start
+        current_max = self.value
+        # set a current pointer to the node we are ond
+        current_pointer = self
+        # traverse our tree
+        while current_pointer is not None:
+            # udpate out current_max variable when we see a larger value
+            if current_pointer.value > current_max:
+                current_max = current_pointer.value
+            current_pointer = current_pointer.value
     # Call the function `fn` on the value of each node
+    # DEPTH FIRST TRAVERSAL
+
     def for_each(self, fn):
         # call the fn function on each node
         fn(self.value)
@@ -123,17 +139,49 @@ class BinarySearchTree:
     # in an iterative breadth first traversal
 
     def bft_print(self, node):
-        pass
+        ## PLAN ##
+        # we need to utilize a queue and set it to a var
+        storage_q = Queue()
+        # add root to the Q
+        storage_q.enqueue(self)
+        # while Q is not empty:
+        while (len(storage_q) > 0):
+            # dequeue our node in order to remove from front of line and print it
+            # dq method returns the value of our first item in the Q
+            node = storage_q.dequeue()
+            print(node.value)
+            # check the nodes left and put it in line to be dequed and printed
+            if node.left is not None:
+                storage_q.enqueue(node.left)
+            # check the nodes right and put it in line to be dequed and printed
+            if node.right is not None:
+                storage_q.enqueue(node.right)
 
     # Print the value of every node, starting with the given node,
     # in an iterative depth first traversal
-    def dft_print(self, node):
-        pass
 
-    # Stretch Goals -------------------------
-    # Note: Research may be required
+    def dft_print(self, node=None):
+        # create a stack
+        storage = Stack()
+        # assign root of tree to stack
+        storage.push(node)
+        # loop thru stack while > 0
+        while (len(storage) > 0):
+            # # node = popped top of stack
+            popped_node = storage.pop()
+            # # print node.value
+            print(popped_node.value)
+            # # check left: add to stack
+            if popped_node.left is not None:
+                storage.push(popped_node.left)
+            # # check right: add to stack
+            if popped_node.right is not None:
+                storage.push(popped_node.right)
 
-    # Print Pre-order recursive DFT
+        # Stretch Goals -------------------------
+        # Note: Research may be required
+
+        # Print Pre-order recursive DFT
     def pre_order_dft(self, node):
         pass
 
